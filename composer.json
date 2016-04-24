@@ -1,0 +1,19 @@
+{
+    "name": "kelunik/access-control",
+    "description": "Role based access control.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kelunik\\AccessControl\\": ["src", "test"]
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5"
+    }
+}

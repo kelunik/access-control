@@ -1,0 +1,28 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+
+matrix:
+  allow_failures:
+    - php: nightly
+  fast_finish: true
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+install:
+  - phpenv config-rm xdebug.ini
+  - composer self-update
+  - composer require satooshi/php-coveralls:dev-master
+  - composer install
+  - composer show --installed
+
+script:
+  - find -name "*.php" -not -path "./vendor/*" -print0 | xargs -n 1 -0 php -l
+  - phpdbg -qrr vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
+
+after_script:
+  - php vendor/bin/coveralls -v
